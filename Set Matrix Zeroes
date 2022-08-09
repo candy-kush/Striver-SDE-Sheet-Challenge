@@ -1,0 +1,22 @@
+#include <bits/stdc++.h> 
+void setZeros(vector<vector<int>> &matrix)
+{
+	// Write your code here.
+    multimap<int,int> mp;
+    int m = matrix.size();
+    int n = matrix[0].size();
+    for(int i=0;i<m;i++){
+        for(int j=0;j<n;j++){
+            if(matrix[i][j] == 0)
+                mp.insert(make_pair(i,j));
+        }
+    }
+    for(auto p: mp){
+        for(int i=0;i<n;i++){
+            matrix[p.first][i] = 0;
+        }
+        for(int i=0;i<m;i++){
+            matrix[i][p.second] = 0;
+        }
+    }
+}
