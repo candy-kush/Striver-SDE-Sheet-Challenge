@@ -1,0 +1,52 @@
+/************************************************************
+    Following is the Binary Search Tree node structure
+    
+    template <typename T>
+    class TreeNode {
+        public :
+        T data;
+        TreeNode<T> *left;
+        TreeNode<T> *right;
+
+        TreeNode(T data) {
+            this -> data = data;
+            left = NULL;
+            right = NULL;
+        }
+
+        ~TreeNode() {
+            if(left)
+                delete left;
+            if(right)
+                delete right;
+        }
+    };
+
+************************************************************/
+
+void inorder(TreeNode<int>* root,vector<int> &vec){
+    if(root==NULL){
+        return;
+    }
+    inorder(root->left,vec);
+    vec.push_back(root->data);
+    inorder(root->right,vec);
+}
+vector<int> getInOrderTraversal(TreeNode<int>* root)
+{
+    // Write your code here.
+    vector<int> vec;
+    inorder(root,vec);
+    return vec;
+}
+
+int KthLargestNumber(TreeNode<int>* root, int k) 
+{
+    // Write your code here.
+    vector<int> ans = getInOrderTraversal(root);
+    int n=ans.size();
+    if(k>n){
+        return -1;
+    }
+    return ans[n-k];
+}
