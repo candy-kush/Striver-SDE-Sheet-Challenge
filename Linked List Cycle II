@@ -1,0 +1,50 @@
+#include <bits/stdc++.h> 
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+        class Node
+        {
+        public:
+	        int data;
+	        Node *next;
+	        Node(int data)
+	        {
+		        this->data = data;
+		        this->next = NULL;
+	        }
+        };
+
+*****************************************************************/
+
+bool detectCycle(Node *head,Node* &slow)
+{
+    //    Write your code here
+    if(head == NULL){
+        return false;
+    }
+    Node* fast = head;
+    while(fast->next != NULL && fast->next->next != NULL){
+        slow = slow->next;
+        fast = fast->next->next;
+        if(slow == fast){
+            return true;
+        }
+    }
+    return false;
+}
+
+Node *firstNode(Node *head)
+{
+	//    Write your code here.
+    Node* slow = head;
+    Node* temp = head;
+    if(detectCycle(head,slow)){
+        while(temp != slow){
+            temp = temp->next;
+            slow = slow->next;
+        }
+        return temp;
+    }
+    return NULL;
+}
