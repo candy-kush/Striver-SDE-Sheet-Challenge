@@ -1,0 +1,8 @@
+def reverseString(str):
+	#Write your code here.
+    x = str.split()
+    s = ""
+    for i in range(len(x)):
+        name = x[i]
+        s = name + " " + s
+    return s
