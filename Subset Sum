@@ -1,0 +1,19 @@
+void findSum(vector<int> &num,vector<int> &ans,int sum,int index){
+    if(index<0){
+        ans.push_back(sum);
+        return;
+    }
+    findSum(num,ans,sum,index-1);
+    findSum(num,ans,sum+num[index],index-1);
+}
+
+vector<int> subsetSum(vector<int> &num)
+{
+    // Write your code here.
+    vector<int> ans;
+    int n = num.size()-1;
+    findSum(num,ans,0,n);
+    sort(ans.begin(),ans.end());
+    
+    return ans;
+}
