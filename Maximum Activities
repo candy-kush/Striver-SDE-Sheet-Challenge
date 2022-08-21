@@ -1,0 +1,31 @@
+#include<bits/stdc++.h>
+struct meeting{
+    int start;
+    int end;
+};
+typedef struct meeting meet;
+
+bool cmp(meet m1,meet m2){
+    return (m1.end < m2.end);
+}
+
+int maximumActivities(vector<int> &start, vector<int> &finish) {
+    // Write your code here.
+    int n = start.size();
+    meet m[n];
+    for (int i=0;i<n;i++){
+        m[i].start = start[i];
+        m[i].end = finish[i];
+    }
+    sort(m,m+n,cmp);
+    int count=1;
+    int endTime = m[0].end;
+
+    for(int i=1;i<n;i++){
+        if(m[i].start >= endTime){
+            endTime = m[i].end;
+            count++;
+        }
+    }
+    return count;
+}
