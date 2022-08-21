@@ -1,0 +1,34 @@
+string writeAsYouSpeak(int n) 
+{
+	// Write your code here.	
+    if(n==1)
+        return "1";
+    if(n==2)
+        return "11";
+    if(n==3)
+        return "21";
+    if(n==4)
+        return "1211";
+    if(n==5)
+        return "111221";
+    if(n==6)
+        return "312211";
+    
+    string s = "312211";
+    for(int j=0;j<n-6;j++){
+        string ans="";
+        int i=0;
+        while(i<s.length()){
+            char c = s[i];
+            int count = 0;
+            while(s[i]==c && i<s.length()){
+                i++;
+                count++;
+            }
+            ans+=to_string(count);
+            ans+=c;
+        }
+        s=ans;
+    }
+    return s;
+}
