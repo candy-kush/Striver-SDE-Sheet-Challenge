@@ -1,0 +1,4 @@
+import itertools
+def findPermutations(s):
+    l = ["".join(i) for i in itertools.permutations(s)]
+    return l
